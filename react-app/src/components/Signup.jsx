@@ -10,18 +10,18 @@ function Signup(){
     // console.log(username);
 
     const handleApi = ()=>{
-        console.log({username , password});
+        // console.log({username , password});
         const url = 'http://localhost:5000/signup';
         const data = {username , password};
         axios.post(url,data)
         .then((res)=>{
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.message){
                 alert(res.data.message);
             }
         })
         .catch((err)=>{
-            console.log(err);
+            // console.log(err);
             alert('SERVER ERR3')
         })
     }

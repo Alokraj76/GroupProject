@@ -9,7 +9,7 @@ function Header(props){
     }
 
     return (
-        <div>
+        <div className = 'header-container d-flex justify-content-between'>
             <div className ="header">
                 <Link to="/">Home</Link>
                 <input className = "search" type ="text" 
@@ -18,11 +18,11 @@ function Header(props){
                 } />
                 <button className ="search-btn" onClick={()=>props.handleClick && props.handleClick()}> SEARCH</button>
 
-                {!localStorage.getItem('token')?
+            </div>
+            <div>
+            {!localStorage.getItem('token')?
                 <Link to="/login">LOGIN</Link>:
-                <button onClick={handleLogout}>LOGOUT</button>}
-                
-            
+                <button className='logout-btn' onClick={handleLogout}>LOGOUT</button>}
             </div>
         </div>
     )

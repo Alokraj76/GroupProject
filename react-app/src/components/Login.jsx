@@ -9,12 +9,12 @@ function Login(){
     const[username,setusername]= useState('');
     const[password,setpassword]= useState('');
     const handleApi = ()=>{
-        console.log({username , password});
+        // console.log({username , password});
         const url = 'http://localhost:5000/login';
         const data = {username , password};
         axios.post(url,data)
         .then((res)=>{
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.message){
                 if(res.data.token){
                     localStorage.setItem('token',res.data.token)
@@ -24,7 +24,7 @@ function Login(){
             }
         })
         .catch((err)=>{
-            console.log(err);
+            // console.log(err);
             alert('SERVER ERR')
         })
     }

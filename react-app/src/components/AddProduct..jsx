@@ -28,14 +28,13 @@ function AddProduct(){
         const url ='http://localhost:5000/add-product';
         axios.post(url,formData)
         .then((res)=>{
-            console.log(res)
             if(res.data.message){
                 alert(res.data.message)
                 navigate('/')
             }
         })
         .catch((err)=>{
-            console.log(err)
+            alert('server err 101')
         })
     }
 
@@ -56,6 +55,7 @@ function AddProduct(){
                     <option>Camera</option>
                     <option>Mobiles</option>
                     <option>Bags</option>
+                    
                 </select>
                 <label>Product Image</label>
                 <input className="form-control" type="file"
