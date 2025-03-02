@@ -7,6 +7,7 @@ function Home(){
     const navigate = useNavigate()
 
     const [products,setproducts] = useState([])
+    const [search,setsearch] = useState('')
 
     // useEffect(()=>{
     //     if(!localStorage.getItem('token')){
@@ -17,21 +18,36 @@ function Home(){
         const url = 'http://localhost:5000/get-products'
         axios.get(url)
         .then((res)=>{
-            console.log(res)
             if(res.data.products){
                 setproducts(res.data.products)
             }
         })
         .catch((err)=>{
-            console.log(err)
             alert('get product error')
         })
 
     },[])
 
+    const handlesearch = (value)=>{
+        // console.log('',value)
+        setsearch(value);
+    }
+    const handleClick=()=>{
+        console.log('products',products);
+        let filteredProducts =products.filter((item)=>{
+            if(item.pname.toLowerCase().includes(search.toLowerCase()) || 
+                item.pdesc.toLowerCase().includes(search.toLowerCase()) || 
+                item.category.toLowerCase().includes(search.toLowerCase())){
+                return item;
+            }
+
+        })
+        setproducts(filteredProducts)
+    }
+
     return (
         <div>
-            <Header />
+            <Header search ={search} handlesearch ={handlesearch} handleClick ={handleClick}/>
            { !!localStorage.getItem('token')&&<Link to="add-product">ADD PRODUCT</Link> }
             <h2>LOST ITEMS DETAILS: </h2>
             <div className="d-flex justify-content-center flex-wrap">

@@ -1,6 +1,7 @@
 import './Header.css'
 import {Link, useNavigate} from 'react-router-dom';
-function Header(){
+
+function Header(props){
     const navigate = useNavigate()
     const handleLogout=()=>{
         localStorage.removeItem('token');
@@ -11,7 +12,11 @@ function Header(){
         <div>
             <div className ="header">
                 <Link to="/">Home</Link>
-                <span className="em-3">lost and found ... in your city</span>
+                <input className = "search" type ="text" 
+                    value = {props && props.search}
+                    onChange={(e)=> props.handlesearch && props.handlesearch(e.target.value)
+                } />
+                <button className ="search-btn" onClick={()=>props.handleClick && props.handleClick()}> SEARCH</button>
 
                 {!localStorage.getItem('token')?
                 <Link to="/login">LOGIN</Link>:
