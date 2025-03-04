@@ -3,6 +3,8 @@ import Header from "./Header";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Categories from "./Categories";
+import{ FaHeart , FaRegHeart} from 'react-icons/fa';
+import './Home.css';
 
 function Home(){
     const navigate = useNavigate()
@@ -62,8 +64,6 @@ function Home(){
             <Header search ={search} handlesearch ={handlesearch} handleClick ={handleClick}/>
             <Categories handleCategory = {handleCategory} />
 
-           { !!localStorage.getItem('token')&&<Link to="add-product">ADD PRODUCT</Link> }
-
             <h5>SEARCH RESULTS</h5>
            <div className="d-flex justify-content-center flex-wrap">
             {
@@ -71,6 +71,10 @@ function Home(){
                 cproducts.map((item,index)=>{
                     return(
                         <div key={item._id} className = "card m-3 ">
+                            <div className="icon-con">
+                                <FaHeart className="icon"/>
+                            </div>
+                            
                             <img width="100px" height="100px"src={'http://localhost:5000/'+item.pimage}></img>
                             <p className= "m-2">{item.pname} | {item.category}</p>
                             <p className= "m-2  text-success">{item.pdesc}</p>
@@ -87,6 +91,10 @@ function Home(){
                 products.map((item,index)=>{
                     return(
                         <div key={item._id} className = "card m-3 ">
+                            <div className="icon-con">
+                            <FaHeart className="icon"/>
+                            </div>
+                        
                             <img width="100px" height="100px"src={'http://localhost:5000/'+item.pimage}></img>
                             <p className= "m-2">{item.pname} | {item.category}</p>
                             <p className= "m-2  text-success">{item.pdesc}</p>

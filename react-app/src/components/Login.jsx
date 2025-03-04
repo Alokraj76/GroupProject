@@ -32,7 +32,6 @@ function Login(){
     return (
         <div>
             <Header />
-            Welcome to login page
             <br></br>
             USERNAME
             <input type = "text" value = {username}
