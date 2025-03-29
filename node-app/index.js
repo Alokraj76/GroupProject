@@ -29,15 +29,35 @@ mongoose.connect("mongodb+srv://alokra7651:0987alok@cluster0.xmzr1.mongodb.net/?
 
 
 
-const Users = mongoose.model('Users',{ username: String, password:String});
+const Users = mongoose.model('Users',{ 
+    username: String, 
+    password:String,
+    // likeProducts : [{type: mongoose.Schema.Types.ObjectId, ref: 'Products'}]
+});
+
 const Products = mongoose.model('Products',{ pname: String, pdesc:String, category: String, pimage: String});
 app.get('/',(req ,res)=>{
     res.send('Hello world')
 })
 
+// app.post('/like-product' , (req,res)=>{
+
+//     let productId = req.body.productId;
+//     let userId = req.body.userId;
+//     // console.log(req.body);
+
+//     Users.updateOne({ _id: userId},{ $addToSet:{likeProducts: productId}})
+//     .then(()=>{
+//         res.send({message: 'like success'})
+//     })
+//     .catch(()=>{
+//         res.send({message: 'like failed'})
+//     })
+// })
+
 app.post('/add-product',upload.single('pimage'),(req,res)=>{
-console.log(req.body);
-console.log(req.file.path);
+// console.log(req.body);
+// console.log(req.file.path);
 const pname = req.body.pname;
 const pdesc = req.body.pdesc;
 const category = req.body.category;
@@ -58,7 +78,7 @@ product.save()
 app.get('/get-products',(req,res)=>{
     Products.find()
     .then((result)=>{
-        console.log(result,"user data")
+        // console.log(result,"user data")
         res.send({message: 'success', products: result})
     })
     .catch((err)=>{
@@ -69,7 +89,7 @@ app.get('/get-products',(req,res)=>{
 app.post('/signup',(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
-    console.log(req.body);
+    // console.log(req.body);
     
     const user = new Users({username: username ,password : password });
     user.save().then(()=>{
@@ -83,11 +103,11 @@ app.post('/signup',(req,res)=>{
 app.post('/login',(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
-    console.log(req.body);
+    // console.log(req.body);
     
     Users.findOne({username: username})
     .then((result)=>{
-        console.log(result,"user data")
+        // console.log(result,"user data")
         if(!result){
             res.send({message: 'user not found'})
         }

@@ -59,6 +59,23 @@ function Home(){
         })
         setcproducts(filteredProducts)
     }
+
+    // const handleLike = (productId)=>{
+    //     let userId = localStorage.getItem('userId');
+    //     console.log('userId', "productId",productId,userId)
+    //     const url = 'http://localhost:5000/like-product';
+    //     const data= {userId,productId}
+    //     axios.post(url,data)
+    //         .then((res)=>{
+    //            console.log(res);
+    //            if(res.data.message){
+    //             alert('Liked')
+    //            }
+    //         })
+    //         .catch((err)=>{
+    //             alert('server Err..')
+    //         })
+    // }
     return (
         <div>
             <Header search ={search} handlesearch ={handlesearch} handleClick ={handleClick}/>
@@ -71,9 +88,9 @@ function Home(){
                 cproducts.map((item,index)=>{
                     return(
                         <div key={item._id} className = "card m-3 ">
-                            <div className="icon-con">
+                            {/* <div onClick={()=>handleLike(item._id)} className="icon-con">
                                 <FaHeart className="icon"/>
-                            </div>
+                            </div> */}
                             
                             <img width="100px" height="100px"src={'http://localhost:5000/'+item.pimage}></img>
                             <p className= "m-2">{item.pname} | {item.category}</p>
@@ -91,9 +108,9 @@ function Home(){
                 products.map((item,index)=>{
                     return(
                         <div key={item._id} className = "card m-3 ">
-                            <div className="icon-con">
+                            {/* <div onClick={()=>handleLike(item._id)} className="icon-con">
                             <FaHeart className="icon"/>
-                            </div>
+                            </div> */}
                         
                             <img width="100px" height="100px"src={'http://localhost:5000/'+item.pimage}></img>
                             <p className= "m-2">{item.pname} | {item.category}</p>
