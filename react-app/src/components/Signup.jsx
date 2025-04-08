@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import { useState } from "react";
 import axios from 'axios';
+import "./login.css";
 
 
 function Signup(){
@@ -27,21 +28,37 @@ function Signup(){
         })
     }
     return (
-        <div>
-            <Header />
-            Welcome to Signup page
-            <br></br>
-            USERNAME
-            <input type = "text" value={username} onChange ={(e)=>{
-                setusername(e.target.value)
-            } }/>
-            <br></br>
-            PASSWORD
-            <input type = "text" value={password}
-            onChange={(e)=>{setpassword(e.target.value)}}/>
-            <br></br>
-            <button onClick={handleApi}>Signup</button>
-            <Link to ="/Login">Login</Link>
+        <div className = "login-page">
+        <div className="wrapper">
+            {/* <Header /> */}
+            <form>
+               <h2>Sign Up</h2>
+                <div className="input-field">
+                    <input 
+                    type = "text"
+                    required
+                    value={username} onChange ={(e)=>{
+                    setusername(e.target.value)
+                    } }/>
+                    <label>USERNAME</label>
+                 </div>
+                
+                <div className="input-field">
+                <input 
+                    type = "password" 
+                    required
+                    value={password}
+                    onChange={(e)=>{setpassword(e.target.value)     
+                    }}/>
+                <label>PASSWORD</label>
+                </div>
+
+                <button onClick={handleApi}>Signup</button>
+                <div className="register">
+                <p>Already have an account? <Link to ="/Login">Login</Link></p>
+                </div>
+                </form>
+        </div>
         </div>
     )
 }
